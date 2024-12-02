@@ -5,14 +5,11 @@ class ViaCepRepository {
   final _CustonDio = ViaCepCustonDio();
 
   Future<ViaCEPModel> consultarCEP(String cep) async {
-    var url = "/$cep/json/";
-    var result = await _CustonDio.dio.get(url);
-    return ViaCEPModel.fromJson(result.data);
-    // if (response.statusCode == 200) {
-    //   var json = jsonDecode(response.body);
-    //   return ViaCEPModel.fromJson(json);
-    // } else {
-    //   return ViaCEPModel();
-    // }
+    try {
+      var result = await _CustonDio.dio.get("/$cep/json/");
+      return ViaCEPModel.fromJson(result.data);
+    } catch (e) {
+      throw e;
+    }
   }
 }

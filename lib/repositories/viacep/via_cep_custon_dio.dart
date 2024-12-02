@@ -7,8 +7,8 @@ class ViaCepCustonDio {
 
   Dio get dio => _dio;
 
-  Back4appCustonDio() {
-    // _dio.options.headers["Content-Type"] = "application/json";
+  ViaCepCustonDio() {
+    _dio.options.headers["Content-Type"] = "application/json";
     _dio.options.baseUrl = dotenv.get("VIACEPBASEURL");
     _dio.interceptors.add(ViaCepDioInterceptor());
   }
