@@ -11,12 +11,11 @@ class ClienteModel {
     this.endereco,
   });
 
-  static List<String> getFields() {
+  static List<Map<String, String>> getFields() {
     return [
-      'nome',
-      'email',
-      'telefone',
-      'endereco',
+      {'name': 'nome', 'label': 'Nome'},
+      {'name': 'email', 'label': 'Email'},
+      {'name': 'telefone', 'label': 'Telefone'}
     ];
   }
 }

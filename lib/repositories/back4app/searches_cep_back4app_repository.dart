@@ -6,6 +6,16 @@ class SearchesCepBack4appRepository {
 
   SearchesCepBack4appRepository();
 
+  Future<SearchesCepBlack4appModel> validCep(String cep) async {
+    try {
+      var url = "?where={\"cep\":$cep}";
+      var result = await _CustonDio.dio.get("/Searches_Cep$url");
+      return SearchesCepBlack4appModel.fromJson(result.data);
+    } catch (e) {
+      throw e;
+    }
+  }
+
   Future<SearchesCepBlack4appModel> getCep() async {
     try {
       var result = await _CustonDio.dio.get("/Searches_Cep");
@@ -17,6 +27,7 @@ class SearchesCepBack4appRepository {
 
   Future<void> postCep(SearchCepBack4AppModel searchCepBack4AppModel) async {
     try {
+      print("toJsonEndpoint: ${searchCepBack4AppModel.toJsonEndpoint()}");
       await _CustonDio.dio
           .post("/Searches_Cep", data: searchCepBack4AppModel.toJsonEndpoint());
     } catch (e) {

@@ -5,17 +5,20 @@ class ViewSettings {
 
   ViewSettings({required this.fieldVisibility});
 
-  // Criar as chaves de visibilidade dinamicamente com base nos campos de um modelo
-  static Map<String, bool> createFieldVisibility(List<String> fields) {
+  // Criar as configurações de visibilidade para os campos da tabela
+  static Future<Map<String, bool>> createFieldVisibility(
+      List<Map<String, String>> fields) async {
+    final prefs = await SharedPreferences.getInstance();
     Map<String, bool> fieldVisibility = {};
     for (var field in fields) {
-      // Inicialmente todos os campos são visíveis
-      fieldVisibility[field] = true;
+      String fieldName = field['name']!;
+      fieldVisibility[fieldName] = prefs.getBool(fieldName) ?? true;
     }
+
     return fieldVisibility;
   }
 
-  // Carregar as configurações de visibilidade dos campos
+  // Carregar as configurações de visibilidade
   Future<void> loadPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     fieldVisibility.forEach((key, _) {
@@ -34,15 +37,21 @@ class ViewSettings {
     });
   }
 
-  // Alternar visibilidade de um campo
-  void toggleFieldVisibility(String field) {
-    if (fieldVisibility.containsKey(field)) {
-      fieldVisibility[field] = !fieldVisibility[field]!;
+  // Salvar todas as configurações de visibilidade
+  Future<void> saveAllPreferences(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    for (var key in fieldVisibility.keys) {
+      prefs.setBool(key, value);
     }
+  }
+
+  // Alterar a visibilidade de um campo
+  void updateFieldVisibility(String field, bool visibility) {
+    fieldVisibility[field] = visibility;
   }
 
   // Verificar se um campo está visível
   bool isFieldVisible(String field) {
-    return fieldVisibility[field] ?? false;
+    return fieldVisibility[field] == true;
   }
 }

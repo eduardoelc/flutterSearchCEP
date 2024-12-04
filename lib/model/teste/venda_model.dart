@@ -11,12 +11,12 @@ class VendaModel {
     this.data,
   });
 
-  static List<String> getFields() {
+  static List<Map<String, String>> getFields() {
     return [
-      'produto',
-      'preco',
-      'quantidade',
-      'data',
+      {'name': 'produto', 'label': 'Produto'},
+      {'name': 'preco', 'label': 'Preço'},
+      {'name': 'quantidade', 'label': 'Quantidade'},
+      {'name': 'data', 'label': 'Data'}
     ];
   }
 }

@@ -132,23 +132,23 @@ class SearchCepBack4AppModel {
   }
 
   // Retorna a lista de campos do Endereço para gerar a configuração de visibilidade
-  static List<String> getFields() {
+  static List<Map<String, String>> getFields() {
     return [
-      'cep',
-      'logradouro',
-      'complemento',
-      'unidade',
-      'bairro',
-      'localidade',
-      'uf',
-      'estado',
-      'regiao',
-      'ibge',
-      'gia',
-      'ddd',
-      'siafi',
-      'createdAt',
-      'updatedAt',
+      {'name': 'cep', 'label': 'CEP'},
+      {'name': 'logradouro', 'label': 'Logradouro'},
+      {'name': 'complemento', 'label': 'Complemento'},
+      {'name': 'unidade', 'label': 'Unidade'},
+      {'name': 'bairro', 'label': 'Bairro'},
+      {'name': 'localidade', 'label': 'Localidade'},
+      {'name': 'uf', 'label': 'UF'},
+      {'name': 'estado', 'label': 'Estado'},
+      {'name': 'regiao', 'label': 'Região'},
+      {'name': 'ibge', 'label': 'IBGE'},
+      {'name': 'gia', 'label': 'GIA'},
+      {'name': 'ddd', 'label': 'DDD'},
+      {'name': 'siafi', 'label': 'SIAFI'},
+      {'name': 'createdAt', 'label': 'Criado em'},
+      {'name': 'updatedAt', 'label': 'Atualizado em'}
     ];
   }
 }

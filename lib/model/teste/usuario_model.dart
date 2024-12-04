@@ -11,12 +11,11 @@ class UsuarioModel {
     this.tipo,
   });
 
-  static List<String> getFields() {
+  static List<Map<String, String>> getFields() {
     return [
-      'nome',
-      'login',
-      'senha',
-      'tipo',
+      {'name': 'nome', 'label': 'Nome'},
+      {'name': 'login', 'label': 'Login'},
+      {'name': 'tipo', 'label': 'Tipo de Usuário'}
     ];
   }
 }
